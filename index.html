@@ -17,6 +17,7 @@
 
 
 <script>
+var nrOfSquares = 12;
 var content = document.getElementById("content");
 var header = document.getElementById("header");
 
@@ -26,19 +27,29 @@ start.id = "start";
 header.appendChild(start);
 
 var board = document.createElement("div");
-board.id = "board";
+board.className = "board";
 
 
 //Loop, y bÖrjar på 0; loopen slutar när y är 10; y plussas på 1 varje gång
-for(var y = 0; y < 10; y++){
-    addRowToBoard();
+for(var y = 0; y < nrOfSquares; y++){
+    var row = addRowToBoard();
+
+    for(var x = 0; x < nrOfSquares; x++){
+        var square = document.createElement("div");
+        square.className = "square";
+
+        if ((x+y) % 2) {
+            square.style.backgroundColor = "black";
+        } else {
+            square.style.backgroundColor = "white";
+        }
+            row.appendChild(square);
+    }
+        
 }
 
 
 
-/*var block = document.createElement("div");
-block.className = "block";
-row.appendChild(block);*/
 
 
 
@@ -51,16 +62,13 @@ content.appendChild(board);
 function addRowToBoard(){
     var row = document.createElement("div");
     row.className = "row";
+   
     board.appendChild(row);
-
-    if (y%2) {
-        row.style.backgroundColor = "black";
-    } else {
-        row.style.backgroundColor = "white";
-    }
-
-
+    return row;
+   
 }
+    
+    
 
 </script>
 
