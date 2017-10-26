@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>  
+<head>
+<link rel="stylesheet" type="text/css" href="main.css">
+
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+
+    
+</head>
+<body>
+<div id="header"> </div>
+<div id="content">
+
+
+
+</div>
+
+
+<script>
+var content = document.getElementById("content");
+var header = document.getElementById("header");
+
+var start = document.createElement("button")
+start.innerText = "Start";
+start.id = "start";
+header.appendChild(start);
+
+var board = document.createElement("div");
+board.id = "board";
+
+
+//Loop, y bÖrjar på 0; loopen slutar när y är 10; y plussas på 1 varje gång
+for(var y = 0; y < 10; y++){
+    addRowToBoard();
+}
+
+
+
+/*var block = document.createElement("div");
+block.className = "block";
+row.appendChild(block);*/
+
+
+
+//pusha till dommen sist för att öka prestanda
+header.appendChild(start);
+content.appendChild(board);
+
+
+
+function addRowToBoard(){
+    var row = document.createElement("div");
+    row.className = "row";
+    board.appendChild(row);
+
+    if (y%2) {
+        row.style.backgroundColor = "black";
+    } else {
+        row.style.backgroundColor = "white";
+    }
+
+
+}
+
+</script>
+
+</body>
+
+
+</html>
