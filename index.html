@@ -17,37 +17,25 @@
 
 
 <script>
-var nrOfSquares = 12;
+var nrOfSquares = 3;
 var content = document.getElementById("content");
 var header = document.getElementById("header");
+
+
 
 var start = document.createElement("button")
 start.innerText = "Start";
 start.id = "start";
 header.appendChild(start);
 
-var board = document.createElement("div");
-board.className = "board";
+start.onclick = function(){
+    setInterval(function() {
+        createBoard();
+        nrOfSquares++;
+    }, 500);
+    
 
-
-//Loop, y bÖrjar på 0; loopen slutar när y är 10; y plussas på 1 varje gång
-for(var y = 0; y < nrOfSquares; y++){
-    var row = addRowToBoard();
-
-    for(var x = 0; x < nrOfSquares; x++){
-        var square = document.createElement("div");
-        square.className = "square";
-
-        if ((x+y) % 2) {
-            square.style.backgroundColor = "black";
-        } else {
-            square.style.backgroundColor = "white";
-        }
-            row.appendChild(square);
-    }
-        
 }
-
 
 
 
@@ -55,17 +43,44 @@ for(var y = 0; y < nrOfSquares; y++){
 
 //pusha till dommen sist för att öka prestanda
 header.appendChild(start);
-content.appendChild(board);
 
 
 
-function addRowToBoard(){
+
+function createBoard(){
+    var board = document.createElement("div");
+    board.className = "board";
+
+    //Loop, y bÖrjar på 0; loopen slutar när y är 10; y plussas på 1 varje gång
+    for(var y = 0; y < nrOfSquares; y++){
+        var row = addRowToBoard(board);
+
+        for(var x = 0; x < nrOfSquares; x++){
+        var square = addSquareToRow(x, y, row);
+        }  
+    }
+    content.innerHTML = "";
+    content.appendChild(board);
+}
+
+function addRowToBoard(board){
     var row = document.createElement("div");
     row.className = "row";
    
     board.appendChild(row);
     return row;
    
+}
+function addSquareToRow(x, y, row){
+    var square = document.createElement("div");
+    square.className = "square";
+
+    if ((x+y) % 2) {
+        square.style.backgroundColor = "black";
+    } else {
+        square.style.backgroundColor = "white";
+    }
+        row.appendChild(square);
 }
     
     
